@@ -7,7 +7,6 @@
 
 namespace Drupal\rules\Tests;
 
-use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\rules\Engine\RulesLog;
 use Drupal\rules\Engine\RulesState;
 
@@ -77,7 +76,10 @@ class RulesEngineTest extends RulesDrupalTestBase {
    */
   public function testContextPassing() {
     $rule = $this->createRulesRule(['context_definitions' => [
-      'test' => new ContextDefinition('string', t('Test string')),
+      'test' => [
+        'type' => 'string',
+        'label' => 'Test string',
+      ],
     ]]);
 
     $rule->addCondition($this->rulesExpressionManager->createInstance('rules_condition', [
